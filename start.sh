@@ -9,7 +9,7 @@ if [ "$WEBSITES" ]; then
     for website in "${WEBSITES[@]}"; do
         # Generate a random password
         npm run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml"
-        (crontab -l ; echo '0 0 */2 * * cd /epg/ && npm run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml') | crontab -
+        (crontab -l ; echo '0 0 */2 * * cd /epg/ && npm run grab -- --site='$website' --maxConnections=10 -o /www/'${website}'_guide.xml') | crontab -
     done
 fi
 
