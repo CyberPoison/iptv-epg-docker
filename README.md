@@ -32,8 +32,8 @@ WEBSITES=meo.pt,sky.com,chaines-tv.orange.tv
 | CPU Architecture | Support |
 | ---------------- | ------- |
 | linux/amd64      | ✅      |
-| linux/arm/v6     | ✅      |
-| linux/arm/v7     | ✅     |
+| linux/arm/v6     | ❌      |
+| linux/arm/v7     | ❌     |
 | linux/arm64      | ✅     |
 
 Note: Only `linux/amd64` is currently supported. Support for other architectures may be added in future releases.
