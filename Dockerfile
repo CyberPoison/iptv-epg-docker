@@ -32,5 +32,6 @@ EXPOSE 3000
 # Default env
 ENV WEBSITES="meo.pt,chaines-tv.orange.fr,sky.com"
 
+ENV CRON="0 0 * * *"
 # Run the command when the container starts
 CMD ["/bin/bash", "/app/start.sh"]
