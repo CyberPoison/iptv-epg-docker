@@ -10,11 +10,11 @@ if [ "$WEBSITES" ]; then
 
         if [ -n "$PROXY" ]; then
             # Use the proxy if the PROXY variable is set
-            npm --proxy "$PROXY" --run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml"
+            npm --proxy "$PROXY" run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml"
             (crontab -l ; echo "$CRON cd /epg/ && npm --proxy \"$PROXY\" run grab -- --site='$website' --maxConnections=10 -o /www/${website}_guide.xml") | crontab -
         else
             # Run without proxy
-            npm --run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml"
+            npm run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml"
             (crontab -l ; echo "$CRON cd /epg/ && npm run grab -- --site='$website' --maxConnections=10 -o /www/${website}_guide.xml") | crontab -
         fi
     done
