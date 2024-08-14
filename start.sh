@@ -5,11 +5,18 @@ if [ "$WEBSITES" ]; then
     # Read the comma-separated list of websites into an array
     IFS=',' read -ra WEBSITES <<< "$WEBSITES"
 
-    # Iterate over each website
     for website in "${WEBSITES[@]}"; do
-        # Generate a random password
-        npm run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml"
-        (crontab -l ; echo "$CRON cd /epg/ && npm run grab -- --site='$website' --maxConnections=10 -o /www/${website}_guide.xml") | crontab -
+    # Generate a random password
+
+        if [ -n "$PROXY" ]; then
+            # Use the proxy if the PROXY variable is set
+            npm --proxy "$PROXY" --run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml"
+            (crontab -l ; echo "$CRON cd /epg/ && npm --proxy \"$PROXY\" run grab -- --site='$website' --maxConnections=10 -o /www/${website}_guide.xml") | crontab -
+        else
+            # Run without proxy
+            npm --run grab -- --site="$website" --maxConnections=10 -o "/www/${website}_guide.xml"
+            (crontab -l ; echo "$CRON cd /epg/ && npm run grab -- --site='$website' --maxConnections=10 -o /www/${website}_guide.xml") | crontab -
+        fi
     done
 fi
 
