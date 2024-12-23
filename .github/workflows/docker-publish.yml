@@ -9,6 +9,7 @@ on:
     tags: [ 'v*.*.*' ]
   pull_request:
     branches: [ "latest" ]
+  workflow_dispatch:
 
 env:
   REGISTRY_IMAGE: cyberpoison/tv-epg
