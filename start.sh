@@ -21,5 +21,5 @@ if [ "$WEBSITES" ]; then
 fi
 
 # Start Services
-npm run serve /epg/www/ & 
+npm run serve /www/ & 
 crond -f -L /var/log/cron.log
